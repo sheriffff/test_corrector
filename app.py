@@ -52,15 +52,15 @@ def page_config():
         test_name = choose_test(key="delete")
 
         if st.button("Borrar"):
-            os.remove(f"./tests_solutions/{test_name}.txt")
+            os.remove(f"./data/{test_name}.txt")
             st.success(f"Se borró el test '{test_name}'")
 
 
 def save_test(test_name, responses):
-    if os.path.exists(f"./tests_solutions/{test_name}.txt"):
+    if os.path.exists(f"./data/{test_name}.txt"):
         st.info(f"Se sobreescribió el test '{test_name}'")
 
-    with open(f"./tests_solutions/{test_name}.txt", "w") as f:
+    with open(f"./data/{test_name}.txt", "w") as f:
         f.write(responses)
 
 
@@ -162,7 +162,7 @@ def ask_for_student_responses(n_questions):
 
 
 def choose_test(key):
-    tests = [file[:-4] for file in os.listdir("./tests_solutions") if file.endswith(".txt")]
+    tests = [file[:-4] for file in os.listdir("./data") if file.endswith(".txt")]
 
     test = st.selectbox("Qué test", tests, key=key)
 
@@ -183,7 +183,7 @@ def choose_substract_error():
 
 
 def load_test(test_name):
-    with open(f"./tests_solutions/{test_name}.txt", "r") as f:
+    with open(f"./data/{test_name}.txt", "r") as f:
         responses_real = f.read()
 
         return responses_real
