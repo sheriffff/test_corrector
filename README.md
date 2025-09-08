@@ -12,7 +12,11 @@ A fast and easy-to-use app for correcting multiple-choice tests!
 
 ## Use it
 
-Visit the app: [Test Corrector](https://your-app-link.com)
+Visit the app: [Test Corrector](https://test-corrector-abcd.streamlit.app/)
+
+## Run Locally
+
+`streamlit run app.py`
 
 
 ## License 📄
