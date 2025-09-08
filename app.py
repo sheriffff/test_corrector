@@ -8,6 +8,8 @@ SYMBOL_BLANK = response_number_to_response[" "]
 
 
 def main():
+    st.set_page_config(page_title="✅ Corrector de tests", layout="wide")
+
     mode = st.sidebar.radio("Modo", ["Corrector", "config"])
 
     if mode == "Corrector":
@@ -19,7 +21,7 @@ def main():
 
 
 def page_config():
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3, gap="large")
 
     with col1:
         st.subheader("Registrar nuevo test")
@@ -42,11 +44,14 @@ def page_config():
 
         test_name = choose_test(key="check")
 
+        if not test_name:
+            st.stop()
+
         responses_real = load_test(test_name)
 
         st.text(responses_real)
 
-    with col2:
+    with col3:
         st.subheader("Borrar test")
 
         test_name = choose_test(key="delete")
@@ -72,6 +77,9 @@ def page_corrector():
         test_name = choose_test(key="corrector")
     with col2:
         substract_error = choose_substract_error()
+
+    if not test_name:
+        st.stop()
 
     responses_real = load_test(test_name)
     n_questions = len(responses_real)
