@@ -1,5 +1,5 @@
 import os
-
+import time
 import streamlit as st
 
 from config import response_number_to_response
@@ -38,6 +38,8 @@ def page_config():
 
             save_test(new_test_name, new_test_responses)
             st.success("Guardado!")
+            time.sleep(2)
+            st.rerun()
 
     with col2:
         st.subheader("Chequear test")
@@ -49,7 +51,7 @@ def page_config():
 
         responses_real = load_test(test_name)
 
-        st.text(responses_real)
+        st.info(responses_real)
 
     with col3:
         st.subheader("Borrar test")
